@@ -10,13 +10,15 @@ class API_call():
                  added_url: AnyStr,
                  data: Dict,
                  headers: Dict = None,
-                 max_retries: int = 1):
+                 max_retries: int = 1,
+                 call_method = get):
 
         self._log = getLogger()
         self.final_URL = base_url + '/' + added_url
         self.max_retries = max_retries
         self.data = data
         self.headers = headers
+        self.call_method = call_method
 
     def send(self) -> Dict:
 
@@ -30,7 +32,7 @@ class API_call():
                                                          'headers': self.headers,
                                                          'timeout': (5*60,5*60)}.items()))
                 return {'API_call_success': True,
-                        'data': get(**get_params).json()}
+                        'data': self.call_method(**get_params).json()}
             except:
                 self._log.error(f'Failed to send an API call to {self.final_URL} at retry attempt {current_retry + 1}/{self.max_retries}')
                 current_retry += 1
