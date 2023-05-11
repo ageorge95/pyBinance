@@ -1,16 +1,14 @@
 from logging import getLogger
 from typing import AnyStr
-from Binance.wallet import PublicWallet,\
-    PrivateWallet
-from Binance.spot import PublicSpot,\
-    PrivateSpot
+from Binance.endpoints.market import MarketEndpoints
+from Binance.endpoints.general import GeneralEndpoints
+from Binance.endpoints.account import AccountEndpoints
 
 base_endpoint: AnyStr = 'https://api3.binance.com'
 
-class pyBinance(PublicWallet,
-                PrivateWallet,
-                PublicSpot,
-                PrivateSpot):
+class pyBinance(MarketEndpoints,
+                GeneralEndpoints,
+                AccountEndpoints):
 
     def __init__(self,
                  API_key: AnyStr = None):
@@ -21,4 +19,3 @@ class pyBinance(PublicWallet,
         self.base_endpoint = base_endpoint
 
         super(pyBinance, self).__init__()
-
