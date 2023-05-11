@@ -34,11 +34,14 @@ if __name__ == '__main__':
     # ########### account examples ###########
     # initialize the APi wrapper
     API_obj = pyBinance(API_key=getenv('BINANCE_API_KEY'),
-                        API_secret=getenv('BINANCE_API_SECRET')
-                        )
+                        API_secret=getenv('BINANCE_API_SECRET'))
 
     # current open orders
     # pprint(API_obj.current_open_orders(symbol='ARPABUSD'))
 
     # all_orders
     # pprint(API_obj.all_orders(symbol='ARPABUSD'))
+
+    # query order
+    # pprint(API_obj.query_order(symbol='ARPABUSD',
+    #                            orderId=122907817))
