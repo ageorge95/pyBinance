@@ -22,3 +22,13 @@ class GeneralEndpoints():
                         added_url=added_url,
                         data={},
                         max_retries=max_retries).send()
+
+    def check_server_time(self,
+                          max_retries: int = 1):
+
+        added_url = r'api/v3/time'
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data={},
+                        max_retries=max_retries).send()

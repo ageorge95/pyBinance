@@ -11,3 +11,6 @@ if __name__ == '__main__':
 
     # test connectivity
     # pprint(API_obj.test_connectivity())
+
+    # check server time
+    # pprint(API_obj.check_server_time())
