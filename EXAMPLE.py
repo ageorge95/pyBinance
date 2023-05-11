@@ -45,3 +45,7 @@ if __name__ == '__main__':
     # query order
     # pprint(API_obj.query_order(symbol='ARPABUSD',
     #                            orderId=122907817))
+
+    # cancel order
+    # pprint(API_obj.cancel_order(symbol='ARPABUSD',
+    #                             orderId=122907817))
