@@ -7,7 +7,8 @@ from urllib.parse import urlencode
 from hashlib import sha256
 from hmac import digest
 from datetime import datetime
-from requests import delete
+from requests import delete,\
+    post
 
 class AccountEndpoints():
     _log: getLogger
@@ -104,3 +105,69 @@ class AccountEndpoints():
                         headers={'X-MBX-APIKEY': self.API_key},
                         max_retries=max_retries,
                         call_method=delete).send()
+
+    @check_API_key
+    def test_new_order(self,
+                       symbol: AnyStr,
+                       side: AnyStr,
+                       type: AnyStr,
+                       quantity: float,
+                       price: float,
+                       timeInForce: AnyStr = 'GTC',
+                       newOrderRespType: AnyStr = 'ACK',
+                       max_retries: int = 1):
+        added_url = r'api/v3/order/test'
+
+        data = {'symbol': symbol,
+                'side': side,
+                'type': type,
+                'quantity': quantity,
+                'price': price,
+                'timeInForce': timeInForce,
+                'newOrderRespType': newOrderRespType,
+                'timestamp': int(datetime.now().timestamp() * 1000)}
+        queryString = urlencode(data)
+        signature = digest(self.API_secret.encode('utf-8'),
+                           queryString.encode('utf-8'),
+                           sha256).hex()
+        data['signature'] = signature
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data=data,
+                        headers={'X-MBX-APIKEY': self.API_key},
+                        max_retries=max_retries,
+                        call_method=post).send()
+
+    @check_API_key
+    def new_order(self,
+                  symbol: AnyStr,
+                  side: AnyStr,
+                  type: AnyStr,
+                  quantity: float,
+                  price: float,
+                  timeInForce: AnyStr = 'GTC',
+                  newOrderRespType: AnyStr = 'ACK',
+                  max_retries: int = 1):
+        added_url = r'api/v3/order'
+
+        data = {'symbol': symbol,
+                'side': side,
+                'type': type,
+                'quantity': quantity,
+                'price': price,
+                'timeInForce': timeInForce,
+                'newOrderRespType': newOrderRespType,
+                'timestamp': int(datetime.now().timestamp() * 1000)}
+        queryString = urlencode(data)
+        signature = digest(self.API_secret.encode('utf-8'),
+                           queryString.encode('utf-8'),
+                           sha256).hex()
+        data['signature'] = signature
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data=data,
+                        headers={'X-MBX-APIKEY': self.API_key},
+                        max_retries=max_retries,
+                        call_method=post).send()

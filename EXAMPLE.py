@@ -49,3 +49,17 @@ if __name__ == '__main__':
     # cancel order
     # pprint(API_obj.cancel_order(symbol='ARPABUSD',
     #                             orderId=122907817))
+
+    # test new order
+    # pprint(API_obj.test_new_order(symbol='BTCBUSD',
+    #                               side='BUY',
+    #                               type='LIMIT',
+    #                               quantity=0.00054,
+    #                               price=20239.89))
+
+    # new order
+    # pprint(API_obj.new_order(symbol='BTCBUSD',
+    #                          side='BUY',
+    #                          type='LIMIT',
+    #                          quantity=0.00054,
+    #                          price=20239.89))
