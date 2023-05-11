@@ -9,12 +9,14 @@ class API_call():
                  base_url: AnyStr,
                  added_url: AnyStr,
                  data: Dict,
+                 headers: Dict = None,
                  max_retries: int = 1):
 
         self._log = getLogger()
         self.final_URL = base_url + '/' + added_url
         self.max_retries = max_retries
         self.data = data
+        self.headers = headers
 
     def send(self) -> Dict:
 
@@ -25,6 +27,7 @@ class API_call():
                 # remove parameters with no values
                 get_params = dict(filter(lambda _:_[1], {'url': self.final_URL,
                                                          'params': self.data,
+                                                         'headers': self.headers,
                                                          'timeout': (5*60,5*60)}.items()))
                 return {'API_call_success': True,
                         'data': get(**get_params).json()}
