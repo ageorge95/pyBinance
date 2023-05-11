@@ -1,6 +1,7 @@
 from logging import getLogger
 from typing import AnyStr,\
-    Literal
+    Literal,\
+    List
 from time import sleep
 from Binance.network_wrappers import API_call
 from Binance.utils import check_API_key,\
@@ -31,4 +32,19 @@ class GeneralEndpoints():
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
                         data={},
+                        max_retries=max_retries).send()
+
+    def exchange_information(self,
+                             symbol: AnyStr | List,
+                             max_retries: int = 1):
+
+        added_url = r'api/v3/exchangeInfo'
+
+        if type(symbol) != str:
+            symbol = [f"\"{_}\"" for _ in symbol]
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data={'symbol': symbol} if type(symbol) == str
+                            else {'symbols': f"[{','.join(symbol)}]"},
                         max_retries=max_retries).send()

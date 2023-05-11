@@ -14,3 +14,7 @@ if __name__ == '__main__':
 
     # check server time
     # pprint(API_obj.check_server_time())
+
+    # exchange information
+    # pprint(API_obj.exchange_information(symbol='BTCUSDT'))
+    # pprint(API_obj.exchange_information(symbol=['BTCUSDT','ETHUSDT']))
