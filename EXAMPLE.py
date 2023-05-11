@@ -26,3 +26,7 @@ if __name__ == '__main__':
     # orderbook
     # pprint(API_obj.order_book(symbol='BTCUSDT'))
     # pprint(API_obj.order_book(symbol='BTCUSDT', limit=5))
+
+    # symbol price ticker
+    # pprint(API_obj.symbol_price_ticker(symbol='BTCUSDT'))
+    # pprint(API_obj.symbol_price_ticker(symbol=['BTCUSDT','ETHUSDT']))
