@@ -12,3 +12,13 @@ class GeneralEndpoints():
 
     def __init__(self):
         super(GeneralEndpoints, self).__init__()
+
+    def test_connectivity(self,
+                          max_retries: int = 1):
+
+        added_url = r'api/v3/ping'
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data={},
+                        max_retries=max_retries).send()
