@@ -7,7 +7,7 @@ if __name__ == '__main__':
     configure_logger()
     # ########### general examples ###########
     # initialize the APi wrapper
-    API_obj = pyBinance()
+    # API_obj = pyBinance()
 
     # test connectivity
     # pprint(API_obj.test_connectivity())
@@ -18,3 +18,11 @@ if __name__ == '__main__':
     # exchange information
     # pprint(API_obj.exchange_information(symbol='BTCUSDT'))
     # pprint(API_obj.exchange_information(symbol=['BTCUSDT','ETHUSDT']))
+
+    # ########### market examples ###########
+    # initialize the APi wrapper
+    API_obj = pyBinance()
+
+    # orderbook
+    # pprint(API_obj.order_book(symbol='BTCUSDT'))
+    # pprint(API_obj.order_book(symbol='BTCUSDT', limit=5))
