@@ -1,5 +1,8 @@
 from decimal import Decimal
 from typing import AnyStr
+from urllib.parse import urlencode
+from hashlib import sha256
+from hmac import digest
 
 def check_API_key(func):
     def inner(*args, **kwargs):
@@ -29,3 +32,10 @@ def full_nr_normalisation(nr: [Decimal, str, int, float],
     # and finally return it
     nr_decimal_places = abs(nr.as_tuple().exponent)
     return f'{nr:.{nr_decimal_places}f}'
+
+def hmac_signature(data,
+                   API_secret):
+    queryString = urlencode(data)
+    return digest(API_secret.encode('utf-8'),
+                  queryString.encode('utf-8'),
+                  sha256).hex()

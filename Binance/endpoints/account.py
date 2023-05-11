@@ -1,11 +1,8 @@
 from logging import getLogger
-from typing import AnyStr,\
-    List
+from typing import AnyStr
 from Binance.network_wrappers import API_call
-from Binance.utils import check_API_key
-from urllib.parse import urlencode
-from hashlib import sha256
-from hmac import digest
+from Binance.utils import check_API_key,\
+    hmac_signature
 from datetime import datetime
 from requests import delete,\
     post
@@ -27,11 +24,8 @@ class AccountEndpoints():
 
         data={'symbol': symbol,
               'timestamp': int(datetime.now().timestamp()*1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
@@ -49,11 +43,8 @@ class AccountEndpoints():
         data = {'symbol': symbol,
                 'limit': limit,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
@@ -71,11 +62,8 @@ class AccountEndpoints():
         data = {'symbol': symbol,
                 'orderId': orderId,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
@@ -93,11 +81,8 @@ class AccountEndpoints():
         data = {'symbol': symbol,
                 'orderId': orderId,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
@@ -126,11 +111,8 @@ class AccountEndpoints():
                 'timeInForce': timeInForce,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
@@ -159,11 +141,8 @@ class AccountEndpoints():
                 'timeInForce': timeInForce,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
-        queryString = urlencode(data)
-        signature = digest(self.API_secret.encode('utf-8'),
-                           queryString.encode('utf-8'),
-                           sha256).hex()
-        data['signature'] = signature
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
 
         return API_call(base_url=self.base_endpoint,
                         added_url=added_url,
