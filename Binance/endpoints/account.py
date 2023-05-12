@@ -96,8 +96,8 @@ class AccountEndpoints():
                        symbol: AnyStr,
                        side: AnyStr,
                        type: AnyStr,
-                       quantity: float,
-                       price: float,
+                       quantity: float | AnyStr,
+                       price: float | AnyStr,
                        timeInForce: AnyStr = 'GTC',
                        newOrderRespType: AnyStr = 'ACK',
                        max_retries: int = 1):
