@@ -36,6 +36,9 @@ if __name__ == '__main__':
     # API_obj = pyBinance(API_key=getenv('BINANCE_API_KEY'),
     #                     API_secret=getenv('BINANCE_API_SECRET'))
 
+    # account information
+    # pprint(API_obj.account_information())
+
     # current open orders
     # pprint(API_obj.current_open_orders(symbol='ARPABUSD'))
 

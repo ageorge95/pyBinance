@@ -17,6 +17,21 @@ class AccountEndpoints():
         super(AccountEndpoints, self).__init__()
 
     @check_API_key
+    def account_information(self,
+                            max_retries: int = 1):
+        added_url = r'api/v3/account'
+
+        data={'timestamp': int(datetime.now().timestamp()*1000)}
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data=data,
+                        headers={'X-MBX-APIKEY': self.API_key},
+                        max_retries=max_retries).send()
+
+    @check_API_key
     def current_open_orders(self,
                             symbol: AnyStr,
                             max_retries: int = 1):
