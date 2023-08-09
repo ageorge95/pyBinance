@@ -49,7 +49,7 @@ class GeneralEndpoints():
         if symbol:
             data |= {'symbol': symbol} if type(symbol) == str \
                 else {'symbols': f"[{','.join(symbol)}]"}
-        if permissions:
+        if not symbol and permissions:
             data |= {'permissions': permissions} if type(permissions) == str \
                 else {'permissions': f"[{','.join(permissions)}]"}
 
