@@ -3,12 +3,14 @@ from typing import AnyStr
 from Binance.endpoints.market import MarketEndpoints
 from Binance.endpoints.general import GeneralEndpoints
 from Binance.endpoints.account import AccountEndpoints
+from Binance.endpoints.simple_earn import SimpleEarn
 
 base_endpoint: AnyStr = 'https://api3.binance.com'
 
 class pyBinance(MarketEndpoints,
                 GeneralEndpoints,
-                AccountEndpoints):
+                AccountEndpoints,
+                SimpleEarn):
 
     def __init__(self,
                  API_key: AnyStr = None,

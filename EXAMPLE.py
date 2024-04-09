@@ -67,3 +67,11 @@ if __name__ == '__main__':
     #                          type='LIMIT',
     #                          quantity=0.00054,
     #                          price=20239.89))
+
+    ########### simple earn examples ###########
+    # initialize the APi wrapper
+    # API_obj = pyBinance(API_key=getenv('BINANCE_API_KEY'),
+    #                     API_secret=getenv('BINANCE_API_SECRET'))
+
+    # account information
+    # pprint(API_obj.simple_earn_products())
