@@ -17,8 +17,8 @@ class SimpleEarn():
         super(SimpleEarn, self).__init__()
 
     @check_API_key
-    def simple_earn_products(self,
-                             max_retries: int = 1):
+    def simple_earn_flexible_products(self,
+                                      max_retries: int = 1):
         added_url = r'sapi/v1/simple-earn/flexible/list'
 
         data={'timestamp': int(datetime.now().timestamp()*1000)}

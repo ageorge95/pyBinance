@@ -74,4 +74,4 @@ if __name__ == '__main__':
     #                     API_secret=getenv('BINANCE_API_SECRET'))
 
     # account information
-    # pprint(API_obj.simple_earn_products())
+    # pprint(API_obj.simple_earn_flexible_products())
