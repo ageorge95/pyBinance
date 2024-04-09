@@ -30,3 +30,18 @@ class SimpleEarn():
                         data=data,
                         headers={'X-MBX-APIKEY': self.API_key},
                         max_retries=max_retries).send()
+
+    @check_API_key
+    def simple_earn_flexible_positions(self,
+                                    max_retries: int = 1):
+        added_url = r'sapi/v1/simple-earn/flexible/position'
+
+        data={'timestamp': int(datetime.now().timestamp()*1000)}
+        data['signature'] = hmac_signature(data,
+                                           self.API_secret)
+
+        return API_call(base_url=self.base_endpoint,
+                        added_url=added_url,
+                        data=data,
+                        headers={'X-MBX-APIKEY': self.API_key},
+                        max_retries=max_retries).send()

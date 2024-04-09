@@ -73,5 +73,8 @@ if __name__ == '__main__':
     # API_obj = pyBinance(API_key=getenv('BINANCE_API_KEY'),
     #                     API_secret=getenv('BINANCE_API_SECRET'))
 
-    # account information
+    # flexible earn products
     # pprint(API_obj.simple_earn_flexible_products())
+
+    # flexible earn positions
+    # pprint(API_obj.simple_earn_flexible_positions())
