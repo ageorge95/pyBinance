@@ -1,4 +1,4 @@
-from Binance.logger import configure_logger
+from ag95 import configure_logger
 from Binance.pyBinance import pyBinance
 from pprint import pprint
 from os import getenv
