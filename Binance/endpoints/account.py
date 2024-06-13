@@ -33,12 +33,14 @@ class AccountEndpoints():
 
     @check_API_key
     def current_open_orders(self,
-                            symbol: AnyStr,
+                            symbol: AnyStr = None,
                             max_retries: int = 1):
         added_url = r'api/v3/openOrders'
 
-        data={'symbol': symbol,
-              'timestamp': int(datetime.now().timestamp()*1000)}
+        data = {'timestamp': int(datetime.now().timestamp() * 1000)}
+        if symbol:
+            data |= {'symbol': symbol}
+
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 

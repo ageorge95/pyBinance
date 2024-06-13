@@ -40,8 +40,11 @@ if __name__ == '__main__':
     # account information
     # pprint(API_obj.account_information())
 
-    # current open orders
+    # current open orders for a certain trading pair
     # pprint(API_obj.current_open_orders(symbol='ARPABUSD'))
+
+    # all current open orders
+    # pprint(API_obj.current_open_orders())
 
     # all_orders
     # pprint(API_obj.all_orders(symbol='ARPABUSD'))
