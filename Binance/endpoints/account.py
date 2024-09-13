@@ -124,12 +124,12 @@ class AccountEndpoints():
                 'side': side,
                 'type': order_type,
                 'quantity': quantity,
-                'price': price,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
 
         if order_type not in ['MARKET']:
-            data |= {'timeInForce': timeInForce,}
+            data |= {'timeInForce': timeInForce,
+                     'price': price}
 
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
@@ -157,12 +157,12 @@ class AccountEndpoints():
                 'side': side,
                 'type': order_type,
                 'quantity': quantity,
-                'price': price,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
 
         if order_type not in ['MARKET']:
-            data |= {'timeInForce': timeInForce,}
+            data |= {'timeInForce': timeInForce,
+                     'price': price}
 
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
