@@ -112,7 +112,7 @@ class AccountEndpoints():
     def test_new_order(self,
                        symbol: AnyStr,
                        side: AnyStr,
-                       type: AnyStr,
+                       order_type: AnyStr,
                        quantity: float | AnyStr,
                        price: float | AnyStr,
                        timeInForce: AnyStr = 'GTC',
@@ -122,12 +122,15 @@ class AccountEndpoints():
 
         data = {'symbol': symbol,
                 'side': side,
-                'type': type,
+                'type': order_type,
                 'quantity': quantity,
                 'price': price,
-                'timeInForce': timeInForce,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
+
+        if order_type not in ['MARKET']:
+            data |= {'timeInForce': timeInForce,}
+
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 
@@ -142,7 +145,7 @@ class AccountEndpoints():
     def new_order(self,
                   symbol: AnyStr,
                   side: AnyStr,
-                  type: AnyStr,
+                  order_type: AnyStr,
                   quantity: float | AnyStr,
                   price: float | AnyStr,
                   timeInForce: AnyStr = 'GTC',
@@ -152,12 +155,15 @@ class AccountEndpoints():
 
         data = {'symbol': symbol,
                 'side': side,
-                'type': type,
+                'type': order_type,
                 'quantity': quantity,
                 'price': price,
-                'timeInForce': timeInForce,
                 'newOrderRespType': newOrderRespType,
                 'timestamp': int(datetime.now().timestamp() * 1000)}
+
+        if order_type not in ['MARKET']:
+            data |= {'timeInForce': timeInForce,}
+
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 
