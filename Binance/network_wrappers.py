@@ -25,7 +25,7 @@ class API_call():
         current_retry = 0
         while current_retry < self.max_retries:
             try:
-                self._log.info(f'Sending an API call to {self.final_URL} at retry attempt {current_retry + 1}/{self.max_retries}')
+                self._log.debug(f'Sending an API call to {self.final_URL} at retry attempt {current_retry + 1}/{self.max_retries}')
                 # remove parameters with no values
                 get_params = dict(filter(lambda _:_[1], {'url': self.final_URL,
                                                          'params': self.data,
