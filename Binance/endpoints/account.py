@@ -114,7 +114,7 @@ class AccountEndpoints():
                        side: AnyStr,
                        order_type: AnyStr,
                        quantity: float | AnyStr,
-                       price: float | AnyStr,
+                       price: float | AnyStr = None,
                        timeInForce: AnyStr = 'GTC',
                        newOrderRespType: AnyStr = 'ACK',
                        max_retries: int = 1):
@@ -128,6 +128,10 @@ class AccountEndpoints():
                 'timestamp': int(datetime.now().timestamp() * 1000)}
 
         if order_type not in ['MARKET']:
+            if not price:
+                raise Exception(f'A {order_type} order was provided without a price !'
+                                f' This is only permitted for MARKET orders.')
+
             data |= {'timeInForce': timeInForce,
                      'price': price}
 
@@ -147,7 +151,7 @@ class AccountEndpoints():
                   side: AnyStr,
                   order_type: AnyStr,
                   quantity: float | AnyStr,
-                  price: float | AnyStr,
+                  price: float | AnyStr = None,
                   timeInForce: AnyStr = 'GTC',
                   newOrderRespType: AnyStr = 'ACK',
                   max_retries: int = 1):
@@ -161,6 +165,10 @@ class AccountEndpoints():
                 'timestamp': int(datetime.now().timestamp() * 1000)}
 
         if order_type not in ['MARKET']:
+            if not price:
+                raise Exception(f'A {order_type} order was provided without a price !'
+                                f' This is only permitted for MARKET orders.')
+
             data |= {'timeInForce': timeInForce,
                      'price': price}
 
