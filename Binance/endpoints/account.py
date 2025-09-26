@@ -37,7 +37,8 @@ class AccountEndpoints():
                             max_retries: int = 1):
         added_url = r'api/v3/openOrders'
 
-        data = {'timestamp': int(datetime.now().timestamp() * 1000)}
+        data = {'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
         if symbol:
             data |= {'symbol': symbol}
 
@@ -59,7 +60,8 @@ class AccountEndpoints():
 
         data = {'symbol': symbol,
                 'limit': limit,
-                'timestamp': int(datetime.now().timestamp() * 1000)}
+                'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 
@@ -78,7 +80,8 @@ class AccountEndpoints():
 
         data = {'symbol': symbol,
                 'orderId': orderId,
-                'timestamp': int(datetime.now().timestamp() * 1000)}
+                'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 
@@ -97,7 +100,8 @@ class AccountEndpoints():
 
         data = {'symbol': symbol,
                 'orderId': orderId,
-                'timestamp': int(datetime.now().timestamp() * 1000)}
+                'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
         data['signature'] = hmac_signature(data,
                                            self.API_secret)
 
@@ -125,7 +129,8 @@ class AccountEndpoints():
                 'type': order_type,
                 'quantity': quantity,
                 'newOrderRespType': newOrderRespType,
-                'timestamp': int(datetime.now().timestamp() * 1000)}
+                'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
 
         if order_type not in ['MARKET']:
             if not price:
@@ -162,7 +167,8 @@ class AccountEndpoints():
                 'type': order_type,
                 'quantity': quantity,
                 'newOrderRespType': newOrderRespType,
-                'timestamp': int(datetime.now().timestamp() * 1000)}
+                'timestamp': int(datetime.now().timestamp() * 1000),
+                'recvWindow': 30000}
 
         if order_type not in ['MARKET']:
             if not price:

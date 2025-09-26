@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 DESCRIPTION = 'Binance Exchange python wrapper'
 LONG_DESCRIPTION = 'Various scripts that can be used to easily interact with the Binance exchange.'
 
